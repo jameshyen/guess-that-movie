@@ -23,7 +23,7 @@ app.get('/movie', function (req, res) {
   }).then(function ({ data }) {
     res.status(200).end(JSON.stringify(data));
   }).catch(function (err) {
-    throw err;
+    res.status(500).end();
   })
 });
 

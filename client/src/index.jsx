@@ -16,8 +16,6 @@ class App extends React.Component {
       guessed: false,
       attempt: '',
     }
-    this.fetch();
-    // this.fetch = this.fetch.bind(this);
     this.guess = this.guess.bind(this);
     this.attempt = this.attempt.bind(this);
   }
@@ -28,12 +26,8 @@ class App extends React.Component {
     });
   }
 
-  guess() {
-    if (this.state.movie.title === this.state.attempt) {
-      this.setState({
-        guessed: true,
-      });
-    }
+  componentDidMount() {
+    this.fetch();
   }
 
   fetch() {
@@ -50,8 +44,19 @@ class App extends React.Component {
             movie: movie,
           });
         }
+      },
+      error() {
+        App.fetch();
       }
     });
+  }
+
+  guess() {
+    if (this.state.movie.title === this.state.attempt) {
+      this.setState({
+        guessed: true,
+      });
+    }
   }
 
   render() {
