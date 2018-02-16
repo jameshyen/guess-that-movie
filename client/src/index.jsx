@@ -18,7 +18,7 @@ class App extends React.Component {
   fetch() {
     const App = this;
     $.ajax({
-      url: '/movies',
+      url: '/movie',
       success(movie) {
         movie = JSON.parse(movie);
         console.log(movie);
