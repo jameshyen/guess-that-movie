@@ -6,7 +6,7 @@ const Guess = ({ movie, guess, attempt }) => {
       <input onChange={attempt} />
       <button onClick={guess}>Submit</button>
     </div>
-  )
+  );
 }
 
 export default Guess;
