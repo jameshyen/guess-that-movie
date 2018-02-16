@@ -8,7 +8,7 @@ const Movie = ({ movie }) => {
   return (
     <div style={style}>
       <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}></img>
-      <h4>{movie.tagline}</h4>
+      <h4>{movie.title}</h4>
     </div>
   );
 }
