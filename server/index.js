@@ -17,12 +17,14 @@ app.get('/movie', function (req, res) {
     return axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
       params: {
         api_key: API_KEY,
-        language: 'en-US', // hm...
+        language: 'en-US',
       }
     });
   }).then(function ({ data }) {
     res.status(200).end(JSON.stringify(data));
-  });
+  }).catch(function (err) {
+    throw err;
+  })
 });
 
 app.listen(3000, function () {

@@ -1,9 +1,16 @@
 import React from 'react';
 
-const Movie = ({ movie }) => (
-  <div>
-    <img src={`http://image.tmdb.org/t/p/original/${movie.poster_path}`}></img>
-  </div>
-);
+const Movie = ({ movie }) => {
+  const style = {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  }
+  return (
+    <div style={style}>
+      <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}></img>
+      <h4>{movie.tagline}</h4>
+    </div>
+  );
+}
 
 export default Movie;

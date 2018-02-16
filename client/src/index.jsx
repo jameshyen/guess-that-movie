@@ -9,7 +9,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: {},
+      movie: {
+        poster_path: 'c6Nu7UjhGCQtV16WXabqOQfikK6.jpg',
+      },
     }
     this.fetch();
     this.fetch = this.fetch.bind(this);
@@ -22,9 +24,13 @@ class App extends React.Component {
       success(movie) {
         movie = JSON.parse(movie);
         console.log(movie);
-        App.setState({
-          movie: movie,
-        })
+        if (!movie.poster_path) {
+          App.fetch();
+        } else {
+          App.setState({
+            movie: movie,
+          });
+        }
       }
     });
   }
