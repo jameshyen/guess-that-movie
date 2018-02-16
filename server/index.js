@@ -32,21 +32,16 @@ app.use(function (req, res, next) {
 });
 
 app.get('/movie', function (req, res) {
-  let movieId = 0;
-  axios.get('https://api.themoviedb.org/3/movie/latest', {
+  const page = Math.floor(Math.random() * 1000);
+  axios.get('https://api.themoviedb.org/3/discover/movie', {
     params: {
       api_key: key,
+      with_original_language: 'en',
+      include_adult: false,
     }
-  }).then(function ({ data }) {
-    movieId = Math.floor(Math.random() * (data.id + 1));
-    return axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
-      params: {
-        api_key: key,
-        language: 'en-US',
-      }
-    });
-  }).then(function ({ data }) {
-    res.status(200).end(JSON.stringify(data));
+  }).then(function ({ data: { results } }) {
+    const movie = Math.floor(Math.random() * (results.length + 1));
+    res.status(200).end(JSON.stringify(results[movie]));
   }).catch(function (err) {
     res.status(500).end();
   })
