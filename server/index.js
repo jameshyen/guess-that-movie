@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 
 const db = require('../database');
-const api_key = require('../config');
+const key = require('../config');
 const auth = require('./auth');
 
 const app = express();
@@ -35,13 +35,13 @@ app.get('/movie', function (req, res) {
   let movieId = 0;
   axios.get('https://api.themoviedb.org/3/movie/latest', {
     params: {
-      api_key: api_key,
+      api_key: key,
     }
   }).then(function ({ data }) {
     movieId = Math.floor(Math.random() * (data.id + 1));
     return axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
       params: {
-        api_key: api_key,
+        api_key: key,
         language: 'en-US',
       }
     });

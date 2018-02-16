@@ -59,4 +59,4 @@ module.exports.logout = {
       res.status(200).redirect('/login');
     });
   },
-}
+};
