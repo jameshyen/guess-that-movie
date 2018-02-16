@@ -6,9 +6,9 @@ const Movie = ({ movie }) => {
     marginRight: 'auto',
   }
   return (
-    <div style={style}>
-      <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}></img>
-      <h4>{movie.title}</h4>
+    <div>
+      <img style={style} src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}></img>
+      <h4 style={style}>{movie.title}</h4>
     </div>
   );
 }
