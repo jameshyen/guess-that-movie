@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Guess = ({ movie, guess, attempt }) => {
+const Guess = ({ guess, attempt, next }) => {
   return (
     <div>
       <input onChange={attempt} />&nbsp;
-      <button onClick={guess}>Submit</button>
+      <button onClick={guess}>Submit</button>&nbsp;
+      <button onClick={next}>Next</button>
     </div>
   );
 }

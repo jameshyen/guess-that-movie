@@ -17,6 +17,7 @@ class App extends React.Component {
       guessed: false,
       attempt: '',
     }
+    this.fetch = this.fetch.bind(this);
     this.guess = this.guess.bind(this);
     this.attempt = this.attempt.bind(this);
   }
@@ -43,6 +44,7 @@ class App extends React.Component {
           console.log(movie.title);
           App.setState({
             movie: movie,
+            guessed: false,
           });
         }
       },
@@ -64,7 +66,7 @@ class App extends React.Component {
     return (
       <div>
         <Movie movie={this.state.movie} guessed={this.state.guessed} />
-        <Guess movie={this.state.movie} guess={this.guess} attempt={this.attempt} /><br />
+        <Guess guess={this.guess} attempt={this.attempt} next={this.fetch} /><br />
         <form action="/logout" method="post">
           <button>Logout</button>
         </form>
