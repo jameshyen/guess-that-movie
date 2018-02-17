@@ -38,6 +38,7 @@ app.get('/movie', function (req, res) {
       api_key: key,
       with_original_language: 'en',
       include_adult: false,
+      page: page,
     }
   }).then(function ({ data: { results } }) {
     const movie = Math.floor(Math.random() * (results.length + 1));

@@ -2,11 +2,11 @@ const bcrypt = require('bcrypt');
 const path = require('path');
 const session = require('express-session');
 
-const db = require('../database');
+const db = require('../../database');
 
 module.exports.login = {
   GET: function (req, res) {
-    res.status(200).sendFile(path.join(__dirname, '/../client/auth/login.html'));
+    res.status(200).sendFile(path.join(__dirname, '/../../client/auth/login.html'));
   },
   POST: function (req, res) {
     db.User.findOne({ username: req.body.username }, function (err, user) {
@@ -30,7 +30,7 @@ module.exports.login = {
 
 module.exports.signup = {
   GET: function (req, res) {
-    res.status(200).sendFile(path.join(__dirname, '/../client/auth/signup.html'));
+    res.status(200).sendFile(path.join(__dirname, '/../../client/auth/signup.html'));
   },
   POST: function (req, res) {
     db.User.find({ username: req.body.username }, function (err, user) {

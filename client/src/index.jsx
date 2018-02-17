@@ -12,6 +12,7 @@ class App extends React.Component {
       movie: {
         poster_path: 'c6Nu7UjhGCQtV16WXabqOQfikK6.jpg',
         title: '127 Hours',
+        overview: `The true story of mountain climber Aron Ralston's remarkable adventure to save himself after a fallen boulder crashes on his arm and traps him in an isolated canyon in Utah.`,
       },
       guessed: false,
       attempt: '',
@@ -63,7 +64,10 @@ class App extends React.Component {
     return (
       <div>
         <Movie movie={this.state.movie} guessed={this.state.guessed} />
-        <Guess movie={this.state.movie} guess={this.guess} attempt={this.attempt} />
+        <Guess movie={this.state.movie} guess={this.guess} attempt={this.attempt} /><br />
+        <form action="/logout" method="post">
+          <button>Logout</button>
+        </form>
       </div>
     );
   }
