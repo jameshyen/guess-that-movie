@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.fetch();
+    // this.fetch();
     this.getScore();
   }
 
@@ -71,7 +71,13 @@ class App extends React.Component {
 
   guess() {
     const App = this;
-    if (this.state.movie.title === this.state.attempt) {
+
+    const {
+      guess,
+      title,
+    } = this.normalize(this.state.attempt, this.state.movie.title);
+
+    if (guess === title) {
       this.setState({
         guessed: true,
       });
@@ -82,7 +88,21 @@ class App extends React.Component {
           App.getScore();
         },
       });
+    } else {
+      alert('Wrong answer!');
     }
+  }
+
+  normalize(guess, title) {
+    guess = guess.replace(/[ :.,'&]/g, '');
+    title = title.replace(/[ :.,'&]/g, '');
+    guess = guess.toLowerCase();
+    title = title.toLowerCase();
+
+    return {
+      guess,
+      title,
+    };
   }
 
   render() {

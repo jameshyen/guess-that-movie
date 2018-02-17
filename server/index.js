@@ -43,6 +43,7 @@ app.get('/movie', function (req, res) {
     },
   }).then(function ({ data: { results } }) {
     const movie = Math.floor(Math.random() * (results.length + 1));
+    console.log(results[movie]);
     res.status(200).end(JSON.stringify(results[movie]));
   }).catch(function (err) {
     res.status(500).end();
