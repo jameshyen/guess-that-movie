@@ -8,6 +8,7 @@ const Movie = ({ movie, guessed }) => {
     <div>
       <img style={style} src={`http://image.tmdb.org/t/p/w342/${movie.poster_path}`}></img>
       <h4 style={style}>{movie.title}</h4>
+      <p>{movie.overview}</p>
     </div>
   );
 }
