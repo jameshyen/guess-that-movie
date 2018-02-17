@@ -7,7 +7,7 @@ const morgan = require('morgan');
 
 const key = require('../config');
 const auth = require('./auth');
-const score = require('./model');
+const model = require('./model');
 
 const app = express();
 
@@ -46,15 +46,16 @@ app.get('/movie', function (req, res) {
     },
   }).then(function ({ data: { results } }) {
     const movie = Math.floor(Math.random() * results.length);
-    console.log(results[movie]);
+    // console.log(results[movie]);
     res.status(200).end(JSON.stringify(results[movie]));
   }).catch(function (err) {
     res.status(500).end();
   });
 });
 
-app.post('/score', score.POST);
-app.get('/score', score.GET);
+app.post('/score', model.score.POST);
+app.get('/score', model.score.GET);
+app.get('/scores', model.scores.GET);
 
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 

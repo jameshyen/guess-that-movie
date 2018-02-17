@@ -14,6 +14,6 @@ const Guess = ({ guess, attempt, next, score }) => {
       Score: {score}
     </div>
   );
-}
+};
 
 export default Guess;

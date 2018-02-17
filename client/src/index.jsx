@@ -4,6 +4,7 @@ import $ from 'jquery';
 
 import Movie from './components/Movie.jsx';
 import Guess from './components/Guess.jsx';
+import HighScores from './components/HighScores.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
       guessed: false,
       attempt: '',
       score: 0,
+      users: [],
     }
     this.fetch = this.fetch.bind(this);
     this.guess = this.guess.bind(this);
@@ -30,8 +32,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // this.fetch();
+    this.fetch();
     this.getScore();
+    // this.getUsers();
   }
 
   fetch() {
@@ -43,7 +46,7 @@ class App extends React.Component {
         if (!movie.backdrop_path) {
           App.fetch();
         } else {
-          console.log(movie.title);
+          // console.log(movie.title);
           App.setState({
             movie: movie,
             guessed: false,
@@ -65,6 +68,19 @@ class App extends React.Component {
         App.setState({
           score: score,
         })
+        App.getUsers();
+      },
+    });
+  }
+
+  getUsers() {
+    const App = this;
+    $.ajax({
+      url: '/scores',
+      success(users) {
+        App.setState({
+          users: JSON.parse(users),
+        });
       },
     });
   }
@@ -112,7 +128,8 @@ class App extends React.Component {
         <Guess guess={this.guess} attempt={this.attempt} next={this.fetch} score={this.state.score} /><br />
         <form action="/logout" method="post">
           <button>Logout</button>
-        </form>
+        </form><br />
+        <HighScores users={this.state.users} />
       </div>
     );
   }

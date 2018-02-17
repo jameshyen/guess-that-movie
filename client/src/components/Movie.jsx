@@ -11,6 +11,6 @@ const Movie = ({ movie, guessed }) => {
       <p>{movie.overview}</p>
     </div>
   );
-}
+};
 
 export default Movie;
