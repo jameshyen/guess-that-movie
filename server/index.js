@@ -3,6 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const path = require('path');
+const morgan = require('morgan');
 
 const key = require('../config');
 const auth = require('./auth');
@@ -17,6 +18,8 @@ app.use(session({
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(morgan('tiny'));
 
 app.get('/login', auth.login.GET);
 app.post('/login', auth.login.POST);
