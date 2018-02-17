@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/movie', function (req, res) {
-  const page = Math.floor(Math.random() * 1000);
+  const page = Math.floor(Math.random() * 1001);
   axios.get('https://api.themoviedb.org/3/discover/movie', {
     params: {
       api_key: key,
