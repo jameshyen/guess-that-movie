@@ -6,6 +6,7 @@ const axios = require('axios');
 const db = require('../database');
 const key = require('../config');
 const auth = require('./auth');
+const score = require('./model');
 
 const app = express();
 
@@ -48,17 +49,8 @@ app.get('/movie', function (req, res) {
   })
 });
 
-app.post('/score', function (req, res) {
-  db.User.findOneAndUpdate({ username: req.session.user}, { $inc: { score: 1 } }, function (err) {
-    res.status(201).end();
-  });
-});
-
-app.get('/score', function (req, res) {
-  db.User.findOne({ username: req.session.user}, function (err, user) {
-    res.status(201).end(JSON.stringify({ score: user.score }));
-  });
-});
+app.post('/score', score.POST);
+app.get('/score', score.GET);
 
 app.use(express.static(__dirname + '/../client/dist'));
 
