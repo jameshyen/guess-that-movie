@@ -94,7 +94,7 @@ class App extends React.Component {
       title,
     } = this.normalize(this.state.attempt, this.state.movie.title);
 
-    if (guess === title) {
+    if (guess === title && !this.state.guessed) {
       this.setState({
         guessed: true,
         attempt: '',
@@ -106,6 +106,8 @@ class App extends React.Component {
           App.getScore();
         },
       });
+    } else if (this.state.guessed) {
+      alert('You already guessed this movie!');
     } else {
       alert('Wrong answer!');
     }
