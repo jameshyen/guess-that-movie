@@ -56,7 +56,7 @@ app.post('/score', function (req, res) {
 
 app.get('/score', function (req, res) {
   db.User.findOne({ username: req.session.user}, function (err, user) {
-    res.status(201).end(JSON.stringify(user));
+    res.status(201).end(JSON.stringify({ score: user.score }));
   });
 });
 

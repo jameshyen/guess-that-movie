@@ -16,6 +16,7 @@ class App extends React.Component {
       },
       guessed: false,
       attempt: '',
+      score: 0,
     }
     this.fetch = this.fetch.bind(this);
     this.guess = this.guess.bind(this);
@@ -30,6 +31,7 @@ class App extends React.Component {
 
   componentDidMount() {
     // this.fetch();
+    this.getScore();
   }
 
   fetch() {
@@ -54,6 +56,19 @@ class App extends React.Component {
     });
   }
 
+  getScore() {
+    const App = this;
+    $.ajax({
+      url: '/score',
+      success(response) {
+        const { score } = JSON.parse(response);
+        App.setState({
+          score: score,
+        })
+      },
+    });
+  }
+
   guess() {
     const App = this;
     if (this.state.movie.title === this.state.attempt) {
@@ -63,6 +78,9 @@ class App extends React.Component {
       $.ajax({
         url: '/score',
         method: 'POST',
+        success() {
+          App.getScore();
+        },
       });
     }
   }
@@ -71,7 +89,7 @@ class App extends React.Component {
     return (
       <div>
         <Movie movie={this.state.movie} guessed={this.state.guessed} />
-        <Guess guess={this.guess} attempt={this.attempt} next={this.fetch} /><br />
+        <Guess guess={this.guess} attempt={this.attempt} next={this.fetch} score={this.state.score} /><br />
         <form action="/logout" method="post">
           <button>Logout</button>
         </form>
