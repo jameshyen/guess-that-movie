@@ -42,7 +42,7 @@ app.get('/movie', function (req, res) {
       page,
     },
   }).then(function ({ data: { results } }) {
-    const movie = Math.floor(Math.random() * (results.length + 1));
+    const movie = Math.floor(Math.random() * results.length);
     console.log(results[movie]);
     res.status(200).end(JSON.stringify(results[movie]));
   }).catch(function (err) {
