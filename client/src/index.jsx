@@ -110,8 +110,8 @@ class App extends React.Component {
   }
 
   normalize(guess, title) {
-    guess = guess.replace(/[ :.,'&]/g, '');
-    title = title.replace(/[ :.,'&]/g, '');
+    guess = guess.replace(/[ :.,'&-?]/g, '');
+    title = title.replace(/[ :.,'&-?]/g, '');
     guess = guess.toLowerCase();
     title = title.toLowerCase();
 
