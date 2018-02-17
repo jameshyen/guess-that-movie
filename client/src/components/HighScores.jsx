@@ -7,14 +7,13 @@ const HighScores = ({ users }) => {
     <table>
       <thead>
         <tr>
-          <th>Rank</th>
-          <th>User</th>
           <th>Score</th>
+          <th>User</th>
         </tr>
       </thead>
       <tbody>
         {users.map((user, index) => {
-          return <HighScoresRow key={index} user={user} index={index} />;
+          return <HighScoresRow key={index} user={user} />;
         })}
       </tbody>
     </table>
