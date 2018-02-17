@@ -2,8 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const path = require('path');
 
-const db = require('../database');
 const key = require('../config');
 const auth = require('./auth');
 const score = require('./model');
@@ -39,20 +39,20 @@ app.get('/movie', function (req, res) {
       api_key: key,
       with_original_language: 'en',
       include_adult: false,
-      page: page,
-    }
+      page,
+    },
   }).then(function ({ data: { results } }) {
     const movie = Math.floor(Math.random() * (results.length + 1));
     res.status(200).end(JSON.stringify(results[movie]));
   }).catch(function (err) {
     res.status(500).end();
-  })
+  });
 });
 
 app.post('/score', score.POST);
 app.get('/score', score.GET);
 
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(path.join(__dirname, '/../client/dist')));
 
 app.listen(3000, function () {
   console.log('listening on port 3000!');
