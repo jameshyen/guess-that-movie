@@ -48,6 +48,18 @@ app.get('/movie', function (req, res) {
   })
 });
 
+app.post('/score', function (req, res) {
+  db.User.findOneAndUpdate({ username: req.session.user}, { $inc: { score: 1 } }, function (err) {
+    res.status(201).end();
+  });
+});
+
+app.get('/score', function (req, res) {
+  db.User.findOne({ username: req.session.user}, function (err, user) {
+    res.status(201).end(JSON.stringify(user));
+  });
+});
+
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.listen(3000, function () {

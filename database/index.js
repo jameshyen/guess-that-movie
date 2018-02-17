@@ -4,13 +4,7 @@ mongoose.connect('mongodb://localhost/trivia');
 const userSchema = mongoose.Schema({
   username: String,
   password: String,
-});
-
-const movieSchema = mongoose.Schema({
-  id: Number, // hm...
-  title: String,
-  user: String,
+  score: Number,
 });
 
 module.exports.User = mongoose.model('User', userSchema);
-module.exports.Movie = mongoose.model('Movie', movieSchema);

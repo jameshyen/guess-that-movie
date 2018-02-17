@@ -41,6 +41,7 @@ module.exports.signup = {
           (new db.User({
             username: req.body.username,
             password: hash,
+            score: 0,
           })).save().then(function (user) {
             req.session.regenerate(function () {
               req.session.user = user.username;

@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       movie: {
-        backdrop_path: 'c6Nu7UjhGCQtV16WXabqOQfikK6.jpg',
+        backdrop_path: 'eHUoB8NbvrvKp7KQMNgvc7yLpzM.jpg',
         title: '127 Hours',
         overview: `The true story of mountain climber Aron Ralston's remarkable adventure to save himself after a fallen boulder crashes on his arm and traps him in an isolated canyon in Utah.`,
       },
@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.fetch();
+    // this.fetch();
   }
 
   fetch() {
@@ -55,9 +55,14 @@ class App extends React.Component {
   }
 
   guess() {
+    const App = this;
     if (this.state.movie.title === this.state.attempt) {
       this.setState({
         guessed: true,
+      });
+      $.ajax({
+        url: '/score',
+        method: 'POST',
       });
     }
   }
