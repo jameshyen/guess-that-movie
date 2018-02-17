@@ -6,7 +6,7 @@ const Movie = ({ movie, guessed }) => {
   };
   return (
     <div>
-      <img style={style} src={`http://image.tmdb.org/t/p/w342/${movie.poster_path}`}></img>
+      <img src={`http://image.tmdb.org/t/p/w780/${movie.backdrop_path}`}></img>
       <h4 style={style}>{movie.title}</h4>
       <p>{movie.overview}</p>
     </div>

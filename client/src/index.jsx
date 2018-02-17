@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       movie: {
-        poster_path: 'c6Nu7UjhGCQtV16WXabqOQfikK6.jpg',
+        backdrop_path: 'c6Nu7UjhGCQtV16WXabqOQfikK6.jpg',
         title: '127 Hours',
         overview: `The true story of mountain climber Aron Ralston's remarkable adventure to save himself after a fallen boulder crashes on his arm and traps him in an isolated canyon in Utah.`,
       },
@@ -38,7 +38,7 @@ class App extends React.Component {
       url: '/movie',
       success(movie) {
         movie = JSON.parse(movie);
-        if (!movie.poster_path) {
+        if (!movie.backdrop_path) {
           App.fetch();
         } else {
           console.log(movie.title);
