@@ -50,6 +50,7 @@ class App extends React.Component {
           App.setState({
             movie: movie,
             guessed: false,
+            attempt: '',
           });
         }
       },
@@ -96,6 +97,7 @@ class App extends React.Component {
     if (guess === title) {
       this.setState({
         guessed: true,
+        attempt: '',
       });
       $.ajax({
         url: '/score',
@@ -125,7 +127,7 @@ class App extends React.Component {
     return (
       <div>
         <Movie movie={this.state.movie} guessed={this.state.guessed} />
-        <Guess guess={this.guess} attempt={this.attempt} next={this.fetch} score={this.state.score} /><br />
+        <Guess guess={this.guess} input={this.state.attempt} next={this.fetch} score={this.state.score} attempt={this.attempt} /><br />
         <form action="/logout" method="post">
           <button>Logout</button>
         </form><br />
